@@ -17,13 +17,13 @@ class Onion(object):
 
         return cls._instance
 
-    def restart(self):
-        self.stop()
+    def start(self):
         self.proc = subprocess.Popen('tor', stdout=subprocess.DEVNULL)
-        time.sleep(5)
 
     def stop(self):
         self.proc.kill()
 
-    def start(self):
-        self.proc = subprocess.Popen('tor', stdout=subprocess.DEVNULL)
+    def restart(self):
+        self.stop()
+        self.start()
+        time.sleep(5)    
